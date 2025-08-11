@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import { TbChartBar, TbChartLine, TbChevronLeft, TbChevronRight, TbList } from "react-icons/tb";
 import useIsPhone from "../hooks/useIsPhone";
 import { DivBars, DivBarsSkeleton } from "./DivBars";
-import { Line, LineSkeleton } from "./Line";
+import { ExpIncLine, LineSkeleton } from "./ExpIncLine";
 import { NivoShell } from "./Nivo";
 import { CategoryPills } from "./CategoryPills";
 
@@ -91,7 +91,7 @@ export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
         <Tabs defaultValue='divbars'>
             <Tabs.List justify='flex-end'>
                 <Tabs.Tab value='divbars' leftSection={<TbChartBar size='1.5rem' />} />
-                <Tabs.Tab value='line' leftSection={<TbChartLine size='1.5rem' />} />
+                <Tabs.Tab value='expincline' leftSection={<TbChartLine size='1.5rem' />} />
                 <Tabs.Tab value='list' leftSection={<TbList size='1.5rem' />} />
             </Tabs.List>
             <Tabs.Panel value='divbars'>
@@ -104,9 +104,9 @@ export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
                     {...commonProps}
                 />
             </Tabs.Panel>
-            <Tabs.Panel value='line'>
+            <Tabs.Panel value='expincline'>
                 <NivoShell
-                    nivo={Line} skeleton={LineSkeleton}
+                    nivo={ExpIncLine} skeleton={LineSkeleton}
                     height={300}
                     {...commonProps}
                 />

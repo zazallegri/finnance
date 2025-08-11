@@ -15,15 +15,15 @@ interface LineData {
     month: string
 }
 
-const useLineData = (props: NivoRequest) =>
+const useExpIncLineData = (props: NivoRequest) =>
     useQuery<LineData[], AxiosError>({
         queryKey: ["categories", "changes", "line", props],
         queryFn: () => getAxiosData(`/api/nivo/line?${searchParams(props)}`)
     });
 
-export const Line = ({ request, size }: NivoComponentProps) => {
+export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
     const nivo = useNivoTheme();
-    const query = useLineData(request);
+    const query = useExpIncLineData(request);
 
     const currency = useCurrency(request.currency_id);
 
