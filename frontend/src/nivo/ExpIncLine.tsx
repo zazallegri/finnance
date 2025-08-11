@@ -82,7 +82,7 @@ export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
             margin={{
                 bottom: 30,
                 left: 60,
-                right: 30,
+                right: 140,
                 top: 20
             }}
 
@@ -95,6 +95,18 @@ export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
                 value={point.data.y as number}
                 currency_id={request.currency_id}
             />}
+
+            legends={[
+                {
+                    anchor: 'bottom-right',
+                    direction: 'column',
+                    translateX: 120,
+                    itemWidth: 80,
+                    itemHeight: 22,
+                    itemDirection: 'right-to-left',
+                    symbolShape: 'circle'
+                }
+            ]}
         />
 }
 
