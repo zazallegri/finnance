@@ -1,4 +1,4 @@
-import { Skeleton, Stack, Text } from "@mantine/core";
+import { Skeleton, Stack, Text, useMantineTheme } from "@mantine/core";
 import { ResponsiveLine } from "@nivo/line";
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
@@ -23,6 +23,7 @@ const useExpIncLineData = (props: NivoRequest) =>
 
 export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
     const nivo = useNivoTheme();
+    const theme = useMantineTheme();
     const query = useExpIncLineData(request);
 
     const currency = useCurrency(request.currency_id);
@@ -40,7 +41,7 @@ export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
     const lines = [
         {
             id: 'expenses',
-            color: 'red',
+            color: `var(--mantine-color-${theme.other.colors.expense}-5)`,
             data: data.map(month => ({
                 y: month.expenses,
                 x: DateTime.fromISO(month.month).toFormat('MMM yy')
@@ -48,7 +49,7 @@ export const ExpIncLine = ({ request, size }: NivoComponentProps) => {
         },
         {
             id: 'income',
-            color: 'blue',
+            color: `var(--mantine-color-${theme.other.colors.income}-5)`,
             data: data.map(month => ({
                 y: month.income,
                 x: DateTime.fromISO(month.month).toFormat('MMM yy')

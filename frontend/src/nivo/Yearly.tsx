@@ -1,13 +1,13 @@
-import { ActionIcon, Center, Checkbox, Group, Popover, SimpleGrid, Tabs, Text, Title } from "@mantine/core";
+import { ActionIcon, Group, Popover, SimpleGrid, Switch, Tabs, Text, Title } from "@mantine/core";
 import { YearPicker } from "@mantine/dates";
 import { DateTime, Duration } from "luxon";
 import { useCallback, useState } from "react";
-import { TbChartBar, TbChartLine, TbChevronLeft, TbChevronRight, TbList } from "react-icons/tb";
+import { TbCalendar, TbChartBar, TbChartLine, TbChevronLeft, TbChevronRight, TbList } from "react-icons/tb";
 import useIsPhone from "../hooks/useIsPhone";
+import { CategoryPills } from "./CategoryPills";
 import { DivBars, DivBarsSkeleton } from "./DivBars";
 import { ExpIncLine, LineSkeleton } from "./ExpIncLine";
 import { NivoShell } from "./Nivo";
-import { CategoryPills } from "./CategoryPills";
 
 export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
 
@@ -15,7 +15,7 @@ export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
     const [popover, setPopover] = useState(false);
 
     const [year, setYear] = useState(new Date());
-    const [last12, setLast12] = useState(true);
+    const [last12, setLast12] = useState(false);
 
     const start = last12 ?
         DateTime.now().startOf('month').minus(Duration.fromObject({
@@ -56,7 +56,8 @@ export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
                 </ActionIcon>
                 <Popover opened={popover} onChange={setPopover}>
                     <Popover.Target>
-                        <ActionIcon onClick={() => setPopover(!popover)} size={isPhone ? 'xl' : 'lg'}
+                        <ActionIcon disabled={last12}
+                            onClick={() => setPopover(!popover)} size={isPhone ? 'xl' : 'lg'}
                             variant='default'>
                             {/* <TbCalendar size={isPhone ? '1.5rem' : '1.3rem'} /> */}
                             <Text fz='xs'>
@@ -77,14 +78,12 @@ export const Yearly = ({ currency_id }: { currency_id: string | null }) => {
                     variant='default'>
                     <TbChevronRight size={isPhone ? '1.5rem' : '1.3rem'} />
                 </ActionIcon>
-                <Checkbox size='xl'
+                <Switch size='xl'
                     checked={last12}
                     onChange={(event) => setLast12(event.currentTarget.checked)}
-                    icon={({className}) => <Center className={className}>
-                        <Text fw='bold'>12</Text>
-                        </Center>}
-                        
-                    indeterminate
+                    thumbIcon={
+                        last12 ? <Text fw='bold' c='dark'>12</Text> :  <TbCalendar size={16} />
+                    }
                 />
             </Group>
         </Group>
