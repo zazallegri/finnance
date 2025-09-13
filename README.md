@@ -25,10 +25,12 @@ npm i
 
 from `/backend` directory:
 ```
+conda activate finnance
 flask run --debug
 ```
 
 from `/frontend` dir:
 ```
+npm i
 npm start
 ```

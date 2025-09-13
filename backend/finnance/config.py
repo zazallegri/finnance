@@ -1,5 +1,6 @@
 import os
 from flask.helpers import get_debug_flag
+import datetime as dt
 
 # Define the application directory
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))  
@@ -36,3 +37,7 @@ if not get_debug_flag():
     SECRET_KEY = os.environ['SECRET_COOKIE_KEY']
 else:
     SECRET_KEY = 'debug_secret_crazy_secure'
+
+# FLASK-LOGIN
+
+REMEMBER_COOKIE_DURATION = dt.timedelta(days=28)
