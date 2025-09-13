@@ -25,6 +25,7 @@ npm i
 
 from `/backend` directory:
 ```
+conda activate finnance
 flask run --debug
 ```
 
